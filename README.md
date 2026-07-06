@@ -1,6 +1,6 @@
-# OpenClaw Jobhunt Automation Portfolio Prep
+# OpenClaw Jobhunt Automation Portfolio
 
-This repository is a **portfolio-prep workspace** for showcasing custom agent skills and workflow integrations built around **OpenClaw** and the open-source **career-ops** project.
+This repository is a **portfolio workspace** showcasing custom agent skills and workflow integrations built around **OpenClaw** and the open-source **career-ops** project.
 
 ## Credits / Upstream Projects
 
@@ -23,7 +23,7 @@ This repository is a **portfolio-prep workspace** for showcasing custom agent sk
 
 ## What this repo contains
 
-This folder currently contains selected OpenClaw skills copied from a separate private workspace into a clean portfolio-prep directory for review.
+This repository contains selected OpenClaw skills published from a private workspace into a clean portfolio directory.
 
 ### Original workflow designs by me
 These represent my own skill/workflow design work:
@@ -51,7 +51,7 @@ The goal of this repo is to prepare a clean public-facing portfolio example of:
 - practical agent-tool orchestration,
 - and selected job-hunt automation related extensions built around existing open-source tooling.
 
-This is **prep work only**. It was assembled from a separate private workspace into an isolated folder so the contents can be reviewed, sanitized, and selectively published later if desired.
+This repository showcases the published version of these skills. The contents have been reviewed, sanitized, and made public for display.
 
 ---
 
@@ -92,4 +92,4 @@ Sanitized `.example` metadata files are included where relevant instead of real 
 
 ## Status
 
-This repository has **not** been initialized with git here, **not** committed, and **not** pushed. It is meant for manual review before any public release decisions are made.
+This repository is initialized, committed, and published as a public repository. It showcases the current working version of these custom skills and integrations.
