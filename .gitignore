@@ -1,0 +1,27 @@
+# Logs
+*.log
+logs/
+
+# Memory / runtime state
+memory/
+
+# Env files
+.env
+.env.*
+
+# Non-example config / metadata files
+**/openclaw.json
+**/openclaw.*.json
+**/config.json
+**/config.yaml
+**/config.yml
+**/*.secret
+**/*.secrets
+**/*.key
+**/*.pem
+**/*token*
+**/*secret*
+
+# Keep only sanitized examples for qmd metadata
+skills/qmd/.clawhub/origin.json
+skills/qmd/_meta.json
