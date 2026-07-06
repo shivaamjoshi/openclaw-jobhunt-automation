@@ -15,7 +15,7 @@ This repository is a **portfolio workspace** showcasing custom agent skills and 
 **Important:** I did **not** build career-ops itself. My work used career-ops as an adjacent/open-source foundation in a broader OpenClaw-powered job-hunt automation workflow.
 
 ### qmd
-[qmd](https://tobi.lutke.com) is a third-party tool that I integrated via an OpenClaw skill wrapper.
+[qmd](https://github.com/tobi/qmd) is a third-party tool that I integrated via an OpenClaw skill wrapper.
 
 **Important:** I did **not** build qmd. The work included here is the **integration layer / skill wrapper** around qmd, not authorship of the underlying tool.
 
