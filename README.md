@@ -79,15 +79,19 @@ graph TD
 
 ## Usage & Sample Invocation
 
-These custom skills are loaded into the OpenClaw orchestrator. Here is how they are triggered and what the sanitized output looks like:
+In OpenClaw, workspace skills are loaded dynamically by the agent and selected/executed based on the user's natural language prompt (rather than being triggered directly as standalone CLI subcommands).
+
+To run these skills, send a message to the OpenClaw agent:
 
 ### 1. Evaluating API Viability (`api-discovery`)
-To evaluate a prospective data source for job ingestion:
+Ask the agent to perform an API viability check on a prospective data source:
 ```bash
-openclaw run api-discovery --source "GitHub Job Board API" --target-use-case "Ingesting backend engineering roles"
+openclaw agent --message "Evaluate whether the GitHub Job Board API is viable for our backend roles integration pipeline."
 ```
 
-#### Sanitized Sample Output:
+When this prompt is processed, the agent matches the description in `skills/api-discovery/SKILL.md` and uses the skill guidelines to generate a decision-ready assessment.
+
+#### Sanitized Sample Agent Response:
 ```markdown
 # API Discovery Report: GitHub Job Board API
 
@@ -117,10 +121,12 @@ Use LinkedIn/Indeed search feed APIs as primary sources, utilizing GitHub only f
 ```
 
 ### 2. Searching Local Knowledge Base (`qmd` wrapper)
-To search local indexed folders (docs, resume iterations, company notes) via `qmd` within OpenClaw:
+Ask the agent to query local indexed document collections (resumes, company notes, role tracker databases):
 ```bash
-openclaw run qmd --query "remote role requirements"
+openclaw agent --message "Search local career documents via qmd for remote role requirements."
 ```
+
+The agent uses the `qmd` skill wrapper, executing the underlying hybrid query engine (BM25 + vectors + rerank) against the collection and outputting matching lines.
 
 ---
 
