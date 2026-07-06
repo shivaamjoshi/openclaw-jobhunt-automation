@@ -55,6 +55,76 @@ This repository showcases the published version of these skills. The contents ha
 
 ---
 
+## Architecture & Data Flow
+
+Below is a system data flow diagram showing how OpenClaw orchestrates these custom skills, uses `qmd` as a local knowledge/memory layer, and integrates with the `career-ops` dashboard format:
+
+```mermaid
+graph TD
+    User([User Prompt / Automation Trigger]) -->|Invokes Skill| OC[OpenClaw Agent Orchestrator]
+    
+    OC -->|Load Custom Skills| Skills{Custom Skills}
+    Skills -->|Evaluate Integration Viability| AD[api-discovery]
+    Skills -->|Deep Web Search & Verify| WR[web-research]
+    Skills -->|Search Local Memory| QW[qmd Wrapper]
+    
+    QW -->|Local Search Query| QMD[qmd CLI]
+    QMD -->|Embeddings / BM25 / Rerank| LocalDocs[(Local Docs & Memory)]
+    
+    AD & WR & QW -->|Synthesize Decision| Report[Decision-Ready Report]
+    Report -->|Update Roles & Status| CO[career-ops Tracker]
+```
+
+---
+
+## Usage & Sample Invocation
+
+These custom skills are loaded into the OpenClaw orchestrator. Here is how they are triggered and what the sanitized output looks like:
+
+### 1. Evaluating API Viability (`api-discovery`)
+To evaluate a prospective data source for job ingestion:
+```bash
+openclaw run api-discovery --source "GitHub Job Board API" --target-use-case "Ingesting backend engineering roles"
+```
+
+#### Sanitized Sample Output:
+```markdown
+# API Discovery Report: GitHub Job Board API
+
+## Decision
+**DEFER**: The public API has been sunset. We should use the fallback hybrid web-scraper route.
+
+## Evidence
+- **Status**: The v3 Jobs API was sunset in 2021; no replacement API exists.
+- **Authentication**: N/A (Endpoint returns 404).
+- **Data Coverage**: Search yields empty/error responses.
+- **Alternative**: GitHub Jobs are now integrated directly into main platform search feeds, which require web crawling.
+
+## Risks
+- Scraper approach is subject to DOM structure changes on github.com/jobs.
+- Risk of rate-limiting/IP blocking without proxy rotation.
+
+## Plan
+1. Define HTML parser selector mapping for `github.com/jobs`.
+2. Integrate `web-research` skill to retrieve search pages.
+3. Store results in the `career-ops` local tracking format.
+
+## Fallback
+Use LinkedIn/Indeed search feed APIs as primary sources, utilizing GitHub only for direct company site checks.
+
+## Sources
+- Official Announcement: https://github.blog/changelog/2021-04-19-deprecation-of-github-jobs/
+```
+
+### 2. Searching Local Knowledge Base (`qmd` wrapper)
+To search local indexed folders (docs, resume iterations, company notes) via `qmd` within OpenClaw:
+```bash
+openclaw run qmd --query "remote role requirements"
+```
+
+---
+
+
 ## Current contents
 
 ```text
